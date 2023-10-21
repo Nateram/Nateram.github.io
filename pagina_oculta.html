@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Juego para Obtener un Enlace</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #8a3ab9; /* Morado al estilo de Instagram */
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+        }
+
+        #game-container {
+            width: 80%;
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        #button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #win-message {
+            display: none;
+            color: green;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        #error-message {
+            display: none;
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        #back-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Inserta el numerin correcto no es 33</h1>
+    <div id="game-container">
+        <p>Ingresa un número y pulsa "Comprobar". Si ingresas el número correcto, recibirás el enlace.</p>
+        <input type="number" id="inputNumber">
+        <button id="checkButton" onclick="checkNumber()">Comprobar</button>
+        <p id="win-message">¡Ganaste! Aquí está tu <a href="https://drive.google.com/file/d/1Y9eo3CWfR-FMsyjUiwF3dmWOOVgSefHg/view?usp=sharing">enlace a Google Drive</a>.</p>
+        <p id="error-message">Número incorrecto. Inténtalo de nuevo.</p>
+    </div>
+
+    <audio id="buttonAudio" src="boton.mp3" style="display: none"></audio>
+
+    <!-- Agrega un botón para volver a la página principal -->
+    <button id="back-button" onclick="window.location.href='pagina.html'">Volver a la Página Principal</button>
+
+    <script>
+        var correctNumber = 44; //
+        var clickCount = 0;
+
+        function checkNumber() {
+            var inputNumber = parseInt(document.getElementById('inputNumber').value);
+
+            if (inputNumber === correctNumber) {
+                var checkButton = document.getElementById('checkButton');
+                var winMessage = document.getElementById('win-message');
+                var buttonAudio = document.getElementById('buttonAudio');
+
+                checkButton.style.display = 'none';
+                winMessage.style.display = 'block';
+                buttonAudio.play(); // Reproduce el sonido
+            } else {
+                var errorMessage = document.getElementById('error-message');
+                var buttonAudio = document.getElementById('buttonAudio');
+                errorMessage.style.display = 'block';
+                buttonAudio.play(); // Reproduce el sonido de error
+            }
+        }
+    </script>
+</body>
+</html>
