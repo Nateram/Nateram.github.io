@@ -98,6 +98,7 @@
             font-size: 20px;
             font-weight: bold;
         }
+        
     </style>
 </head> 
 <body>
@@ -126,6 +127,10 @@
             </tr>
         </table>
 
+        <!-- Botón para descargar el archivo MP3 -->
+        <a href="audioweb.mp3" download id="downloadAudioLink" style="display: none;">Descargar Música</a>
+        <button id="audioControlButton" onclick="downloadAudio()">Descargar Música</button>
+
         <!-- Agregar el contador de clics -->
         <p class="click-counter" id="clickCounter">Número de clics: 0</p>
 
@@ -133,15 +138,11 @@
         <p class="error-message" id="errorMessage">¡Me repites ese numerín!</p>
     </div>
 
-<!-- Botón oculto con enlace a paginaoculta.html -->
-<a href="https://nateram.github.io/Index.html" class="hidden-link" id="hiddenLinkButton" style="display: none; margin: 0 auto;">Página Oculta</a>
+    <!-- Botón oculto con enlace a paginaoculta.html -->
+    <a href="https://nateram.github.io/Index.html" class="hidden-link" id="hiddenLinkButton" style="display: none; margin: 0 auto;">Página Oculta</a>
 
-*
     <!-- Botón de reproducción de música (sin cambios) -->
     <button id="audioControlButton" onclick="toggleAudio()">Reproducir Música</button>
-
-
-
 
     <audio id="backgroundAudio" autoplay>
         <source src="audioweb.mp3" type="audio/mpeg">
@@ -155,6 +156,7 @@
         function toggleAudio() {
             var audio = document.getElementById('backgroundAudio');
             var button = document.getElementById('audioControlButton');
+            var downloadLink = document.getElementById('downloadAudioLink');
 
             if (audio.paused) {
                 audio.play();
@@ -162,14 +164,19 @@
             } else {
                 audio.pause();
                 button.textContent = "Reproducir Música";
+                downloadLink.style.display = 'block'; // Mostrar el enlace de descarga cuando se detiene la música
             }
+        }
+
+        function downloadAudio() {
+            var audioLink = document.getElementById('downloadAudioLink');
+            audioLink.click();
         }
 
         function showHiddenLink() {
             var hiddenLinkButton = document.getElementById('hiddenLinkButton');
             hiddenLinkButton.style.display = 'block';
         }
-        
 
         document.body.addEventListener('click', function() {
             clickCount++;
@@ -185,3 +192,4 @@
     </script>
 </body>
 </html>
+
