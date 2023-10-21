@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>¿Qué sensación te produce la Universidad de Extremadura?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #8a3ab9; /* Morado al estilo de Instagram */
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
+        td {
+            border: none;
+            padding: 10px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            transition: transform 0.2s;
+        }
+
+        td:hover {
+            transform: scale(1.05);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        img:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        #audioControlButton {
+            color: white;
+            background-color: #8a3ab9; /* Morado al estilo de Instagram */
+            padding: 10px 20px;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #audioControlButton:hover {
+            background-color: #6b2a99; /* Cambio de color al pasar el ratón */
+        }
+
+        .hidden-link {
+            display: none;
+            color: white;
+            background-color: #4CAF50; /* Botón verde */
+            padding: 10px 20px;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .hidden-link:hover {
+            background-color: #45a049; /* Cambio de color al pasar el ratón */
+        }
+
+        .click-counter {
+            font-size: 18px;
+            margin: 10px;
+            color: #8a3ab9; /* Morado al estilo de Instagram */
+        }
+
+        .error-message {
+            display: none;
+            color: red;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head> 
+<body>
+    <div class="header">
+        <h1>¿Qué sensación te produce la Universidad de Extremadura?</h1>
+    </div>
+
+    <div class="container">
+        <!-- Tabla 6x2 para las imágenes -->
+        <table>
+            <tr>
+                <td><a href="imagen1.bmp" target="_blank"><img src="imagen1.bmp" alt="Imagen 1"></a></td>
+                <td><a href="imagen2.bmp" target="_blank"><img src="imagen2.bmp" alt="Imagen 2"></a></td>
+                <td><a href="imagen3.bmp" target="_blank"><img src="imagen3.bmp" alt="Imagen 3"></a></td>
+                <td><a href="imagen4.bmp" target="_blank"><img src="imagen4.bmp" alt="Imagen 4"></a></td>
+                <td><a href="imagen5.bmp" target="_blank"><img src="imagen5.bmp" alt="Imagen 5"></a></td>
+                <td><a href="imagen6.bmp" target="_blank"><img src="imagen6.bmp" alt="Imagen 6"></a></td>
+            </tr>
+            <tr>
+                <td><a href="imagen7.bmp" target="_blank"><img src="imagen7.bmp" alt="Imagen 7"></a></td>
+                <td><a href="imagen8.bmp" target="_blank"><img src="imagen8.bmp" alt="Imagen 8"></a></td>
+                <td><a href="imagen9.bmp" target="_blank"><img src="imagen9.bmp" alt="Imagen 9"></a></td>
+                <td><a href="imagen10.bmp" target="_blank"><img src="imagen10.bmp" alt="Imagen 10"></a></td>
+                <td><a href="imagen11.bmp" target="_blank"><img src="imagen11.bmp" alt="Imagen 11"></a></td>
+                <td><a href="imagen12.bmp" target="_blank"><img src="imagen12.bmp" alt="Imagen 12"></a></td>
+            </tr>
+        </table>
+
+        <!-- Agregar el contador de clics -->
+        <p class="click-counter" id="clickCounter">Número de clics: 0</p>
+
+        <!-- Mostrar mensaje de error -->
+        <p class="error-message" id="errorMessage">¡Me repites ese numerín!</p>
+    </div>
+
+<!-- Botón oculto con enlace a paginaoculta.html -->
+<a href="https://nateram.github.io/Index.html" class="hidden-link" id="hiddenLinkButton" style="display: none; margin: 0 auto;">Página Oculta</a>
+
+*
+    <!-- Botón de reproducción de música (sin cambios) -->
+    <button id="audioControlButton" onclick="toggleAudio()">Reproducir Música</button>
+
+
+
+
+    <audio id="backgroundAudio" autoplay>
+        <source src="audioweb.mp3" type="audio/mpeg">
+        Tu navegador no soporta la reproducción de audio.
+    </audio>
+
+    <script>
+        var clickCount = 0;
+        var totalClicksRequired = 33; // Cambiar el número de clics requeridos aquí
+
+        function toggleAudio() {
+            var audio = document.getElementById('backgroundAudio');
+            var button = document.getElementById('audioControlButton');
+
+            if (audio.paused) {
+                audio.play();
+                button.textContent = "Detener Música";
+            } else {
+                audio.pause();
+                button.textContent = "Reproducir Música";
+            }
+        }
+
+        function showHiddenLink() {
+            var hiddenLinkButton = document.getElementById('hiddenLinkButton');
+            hiddenLinkButton.style.display = 'block';
+        }
+        
+
+        document.body.addEventListener('click', function() {
+            clickCount++;
+            // Actualizar el contador de clics
+            document.getElementById('clickCounter').textContent = 'Número de clics: ' + clickCount;
+
+            if (clickCount === totalClicksRequired) {
+                showHiddenLink();
+                document.querySelector('.click-counter').style.display = 'none';
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
